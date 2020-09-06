@@ -1,0 +1,11 @@
+@startuml
+state c1 <<choice>>
+PURCHASE_COMPLETE : Guard
+
+[*] --> NEW
+NEW --> RESERVED : RESERVE
+RESERVED --> c1
+c1 --> PURCHASE_COMPLETE : BUY
+c1 -->CANCEL_RESERVED : RESERVE_DECLINE
+PURCHASE_COMPLETE --> [*]
+@enduml
