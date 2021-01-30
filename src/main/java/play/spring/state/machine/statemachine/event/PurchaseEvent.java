@@ -1,4 +1,4 @@
-package play.spring.state.machine.domain.statemachine.event;
+package play.spring.state.machine.statemachine.event;
 
 public enum PurchaseEvent {
     RESERVE,

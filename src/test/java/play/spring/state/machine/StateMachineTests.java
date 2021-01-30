@@ -7,8 +7,8 @@ import org.springframework.statemachine.StateMachine;
 import org.springframework.statemachine.config.StateMachineFactory;
 import org.springframework.statemachine.test.StateMachineTestPlan;
 import org.springframework.statemachine.test.StateMachineTestPlanBuilder;
-import play.spring.state.machine.domain.statemachine.event.PurchaseEvent;
-import play.spring.state.machine.domain.statemachine.state.PurchaseState;
+import play.spring.state.machine.statemachine.event.PurchaseEvent;
+import play.spring.state.machine.statemachine.state.PurchaseState;
 
 @SpringBootTest
 public class StateMachineTests {

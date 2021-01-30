@@ -1,4 +1,4 @@
-package play.spring.state.machine.domain.statemachine.state;
+package play.spring.state.machine.statemachine.state;
 
 public enum PurchaseState {
     NEW,

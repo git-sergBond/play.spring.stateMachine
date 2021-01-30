@@ -1,27 +1,21 @@
-package play.spring.state.machine.domain.service.purchase.impl;
+package play.spring.state.machine.service.impl;
 
+import lombok.AllArgsConstructor;
 import org.springframework.statemachine.StateMachine;
 import org.springframework.statemachine.config.StateMachineFactory;
 import org.springframework.statemachine.persist.StateMachinePersister;
 import org.springframework.stereotype.Service;
-import play.spring.state.machine.domain.service.purchase.PurchaseServiceInterface;
-import play.spring.state.machine.domain.statemachine.event.PurchaseEvent;
-import play.spring.state.machine.domain.statemachine.state.PurchaseState;
+import play.spring.state.machine.service.PurchaseServiceInterface;
+import play.spring.state.machine.statemachine.event.PurchaseEvent;
+import play.spring.state.machine.statemachine.state.PurchaseState;
 
 @Service
+@AllArgsConstructor
 public class PurchaseService implements PurchaseServiceInterface {
 
-    private final StateMachineFactory stateMachineFactory;
-    private final StateMachinePersister stateMachinePersister;
+    private final StateMachineFactory<PurchaseState, PurchaseEvent> stateMachineFactory;
 
-    public PurchaseService(
-            //TODO why i have error at this line ? Cuold not autowire No beans statemachine factory
-            StateMachineFactory<PurchaseState, PurchaseEvent> stateMachineFactory,
-            StateMachinePersister<PurchaseState, PurchaseEvent, String> stateMachinePersister
-    ) {
-        this.stateMachineFactory = stateMachineFactory;
-        this.stateMachinePersister = stateMachinePersister;
-    }
+    private final StateMachinePersister<PurchaseState, PurchaseEvent, String>  stateMachinePersister;
 
     @Override
     public boolean reserved(String userId, String productId) {
@@ -61,5 +55,19 @@ public class PurchaseService implements PurchaseServiceInterface {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public StateMachine<PurchaseState, PurchaseEvent> getCurrentStateMachine(String userId) {
+        final StateMachine<PurchaseState, PurchaseEvent> stateMachine = stateMachineFactory.getStateMachine();
+
+        try {
+            stateMachinePersister.restore(stateMachine, userId);
+        } catch (final Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        return stateMachine;
     }
 }

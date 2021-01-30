@@ -1,18 +1,15 @@
-package play.spring.state.machine.web.controller;
+package play.spring.state.machine.resource;
 
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import play.spring.state.machine.domain.service.purchase.PurchaseServiceInterface;
+import play.spring.state.machine.service.PurchaseServiceInterface;
 
 @RestController
-//TODO @SuppressWarnings("unused")
-public class PurchaseController {
+@AllArgsConstructor
+public class PurchaseResource {
 
     private final PurchaseServiceInterface purchaseService;
-
-    public PurchaseController(PurchaseServiceInterface purchaseService) {
-        this.purchaseService = purchaseService;
-    }
 
     @RequestMapping(path = "/reserve")
     public boolean reserve (final String userId, final String productId) {

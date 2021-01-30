@@ -1,9 +1,10 @@
-package play.spring.state.machine.domain.statemachine.persist;
+package play.spring.state.machine.statemachine.persist;
 
 import org.springframework.statemachine.StateMachineContext;
 import org.springframework.statemachine.StateMachinePersist;
-import play.spring.state.machine.domain.statemachine.event.PurchaseEvent;
-import play.spring.state.machine.domain.statemachine.state.PurchaseState;
+import org.springframework.stereotype.Component;
+import play.spring.state.machine.statemachine.event.PurchaseEvent;
+import play.spring.state.machine.statemachine.state.PurchaseState;
 
 import java.util.HashMap;
 

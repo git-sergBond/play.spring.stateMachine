@@ -1,4 +1,8 @@
-package play.spring.state.machine.domain.service.purchase;
+package play.spring.state.machine.service;
+
+import org.springframework.statemachine.StateMachine;
+import play.spring.state.machine.statemachine.event.PurchaseEvent;
+import play.spring.state.machine.statemachine.state.PurchaseState;
 
 public interface PurchaseServiceInterface {
     /**
@@ -31,4 +35,7 @@ public interface PurchaseServiceInterface {
      * машину их импровизированного репозитория произойдет ошибка.
      */
     boolean buy(String userId);
+
+
+    StateMachine<PurchaseState, PurchaseEvent> getCurrentStateMachine(String userId);
 }

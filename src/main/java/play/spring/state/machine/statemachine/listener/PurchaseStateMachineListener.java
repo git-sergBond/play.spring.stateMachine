@@ -1,19 +1,21 @@
-package play.spring.state.machine.domain.statemachine.listener;
+package play.spring.state.machine.statemachine.listener;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.messaging.Message;
 import org.springframework.statemachine.StateContext;
 import org.springframework.statemachine.StateMachine;
 import org.springframework.statemachine.state.State;
 import org.springframework.statemachine.transition.Transition;
-import play.spring.state.machine.domain.statemachine.event.PurchaseEvent;
-import play.spring.state.machine.domain.statemachine.state.PurchaseState;
+import play.spring.state.machine.statemachine.event.PurchaseEvent;
+import play.spring.state.machine.statemachine.state.PurchaseState;
 
-public class PurchaseStateMachineListener implements org.springframework.statemachine.listener.StateMachineListener<play.spring.state.machine.domain.statemachine.state.PurchaseState, play.spring.state.machine.domain.statemachine.event.PurchaseEvent> {
+@Slf4j
+public class PurchaseStateMachineListener implements org.springframework.statemachine.listener.StateMachineListener<play.spring.state.machine.statemachine.state.PurchaseState, play.spring.state.machine.statemachine.event.PurchaseEvent> {
     @Override
     public void stateChanged(State<PurchaseState, PurchaseEvent> state, State<PurchaseState, PurchaseEvent> state1) {
         if(state != null) {
             if (state.getId() != null) {
-                System.out.println(String.join(" ", "Переход из статуса", state.getId().toString(), "в статус", state1.getId().toString()));
+                log.info("Переход из статуса {} в статус {}", state.getId().toString(), state1.getId().toString());
             }
         }
 

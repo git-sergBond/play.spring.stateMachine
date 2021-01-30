@@ -1,10 +1,12 @@
-package play.spring.state.machine.domain.statemachine.guard;
+package play.spring.state.machine.statemachine.guard;
 
 import org.springframework.statemachine.StateContext;
 import org.springframework.statemachine.guard.Guard;
-import play.spring.state.machine.domain.statemachine.event.PurchaseEvent;
-import play.spring.state.machine.domain.statemachine.state.PurchaseState;
+import org.springframework.stereotype.Component;
+import play.spring.state.machine.statemachine.event.PurchaseEvent;
+import play.spring.state.machine.statemachine.state.PurchaseState;
 
+@Component
 public class HideGuard implements Guard<PurchaseState, PurchaseEvent> {
     @Override
     public boolean evaluate(StateContext<PurchaseState, PurchaseEvent> stateContext) {
