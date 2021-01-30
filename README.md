@@ -1,18 +1,18 @@
 # Play with StateMachine
 
+Этот проект предназначен в ознакомительных целях, для экспериментов с машиной состояний.
+
+Все началось с данного проекта (здесь можно ознакомиться о чем идет речь в данном проекте):
+https://habr.com/ru/post/462371/
+https://github.com/mypanacea/statemachine
+
 ТЗ:
 Приложение будет абстракцией на процесс покупки
 Продукт при покупке будет проходить стадии new, reserved, reserved decline и purchase complete.
+Описание состояний: doc\StateMachine.puml
+Описание состояний (сгенерированное из StateMachine.puml): doc\StateMachine.png
 
-/**
-добавить сюда диаграмму состояний uml **/
-
-Docs:
-https://www.google.com/search?q=%40Bean&oq=%40Bean&aqs=chrome..69i57j69i65l2&sourceid=chrome&ie=UTF-8
-
-Original:
-https://habr.com/ru/post/462371/
-https://github.com/mypanacea/statemachine
+====Далее идут отрывки информации которые интересно изучить===
 
 TODO:
 * try use spring-statemachine-test library for testing
@@ -25,7 +25,6 @@ TODO:
 * В нашем проекте, над бином statemachine был реализован wrapper(особенности нашей бизнес-логики), wrapper был singleton, а сама машина prototype
 * чего он тут нагородил? Цитата: Как реализовать prototype в singlton-е?По сути все что требуется сделать это получать каждый раз при обращении к объекту новый bean из applicationContext. Inject-ать applicationContext в бизнес-логику грех, поэтому bean statemachine должен либо реализовывать интерфейс с хотя бы одним методом, либо абстрактный метод(method injection), при создании в java — конфиге потребуется реализовать обозначенный абстрактный метод, а в реализации мы будем дергать из applicationContext новый bean. Иметь в config классе ссылку на applicationContext нормальная практика, и через абстрактный метод мы будет вызвать из контекста .getBean()
 * в этом же конфиге можно задать отдельный TaskExecutor, что удобно тогда, когда на каком-то их переходов выполняется долгий Action, а приложение должно идти дальше.
-StateMachine.png
 ***
 
 Помимо «навешивания» Action в transitions можно также «навешивать» их в методе configure для state, примерно в таком виде:
